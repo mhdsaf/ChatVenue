@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat Room</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.min.css">
+</head>
+<style>
+    .container {
+      border: 2px solid white;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      display: inline-block;
+    }
+    
+    .lighter {
+      border-color: white;
+      background-color: rgb(184, 216, 226)
+    }
+    .darker{
+      border-color: white;
+      background-color: rgb(209, 209, 209)
+    }
+    .container::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .time-right {
+      float: right;
+      color: rgb(105, 105, 105);
+      font-size: x-small;
+    }
+    .name{
+        font-size: 15px;
+        color: #2196F3
+    }
+    </style>
+<body>
+    <div class="chat">
+        <div class="chat__sidebar">
+            <div class="text-center">
+                <h5>Participants List:</h5>
+            </div>
+            <div id="participants-list">
+                
+            </div>
+            <div class="text-center">
+                <button class="btn-danger" id="end">End Room</button>
+            </div>
+        </div>
+        <div class="chat__main">
+            <i class="fa fa-users btn" style="font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="View all participants" id="btnn1" ></i>
+            <button id="btnn" data-toggle="modal" data-target="#myModal" style="display: none;"></button>
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Participants list:</h5>
+                        <button class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <ol class="pl-3" id="uList">
+                            
+                        </ol>
+                        <button class="btn-danger" id="end1">End Room</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div id="messages" class="chat__messages">
+                
+            </div>
+
+            <div class="compose">
+                <form id="message-form">
+                    <input name="message" id="msg" placeholder="Message" required autocomplete="off">
+                    <button class="my1" id="send"><i class="fa fa-send"></i></button>
+                </form>
+                <button class="my" id="loc">Share location</button>
+                <button class="my2" type="button" data-toggle="tooltip" data-placement="top" title="Share location"> <i class="fa fa-map-marker" style="font-size: large;"></i></button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $("#btnn1").click(function (e) { 
+            e.preventDefault();
+            document.getElementById('btnn').click();
+        });
+    </script>
+</body>
+
+</html>
