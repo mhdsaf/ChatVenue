@@ -144,6 +144,6 @@ $(document).ready(function () {
         socket.on('out', ()=>{
             location.href = '/';
         })
-    }, 100);
+    }, 2000);
     
 });
