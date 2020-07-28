@@ -34,8 +34,8 @@ $(document).ready(function () {
         //$("#msg").html(`<div>localhost:3000?n=${name}&p=${password}</div>`);
         //alert(`localhost:3000?n=${name}&p=${password}`);
         if (status==true) {
-            $("#foo").val(`chatvenue.herokuapp.com?n=${name}&p=${password}`);
-            localStorage.setItem('URL', `chatvenue.herokuapp.com?n=${name}&p=${password}`)
+            $("#foo").val(`https://chatvenue.herokuapp.com?n=${name}&p=${password}`);
+            localStorage.setItem('URL', `https://chatvenue.herokuapp.com?n=${name}&p=${password}`)
             $("#msg").hide();
             $("#copy").show();
             //location.href = '/chat';
