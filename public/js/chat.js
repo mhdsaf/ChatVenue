@@ -110,6 +110,41 @@ $(document).ready(function () {
                 alert("Browser doesn't support geolocation");
             }
         });
+        $("#loc1").click(function (e) { 
+            console.log('click');
+            e.preventDefault();
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition((position)=>{
+                    fetch('/try',{
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({lat: position.coords.latitude, long: position.coords.longitude})
+                    }).then((response)=>{
+                        response.json().then((data)=>{
+                            console.log(data);
+                            let lat = position.coords.latitude;
+                            let long = position.coords.longitude;
+                            let obj = {
+                                location: data.features[0].place_name,
+                                link: `https://google.com/maps?q=${lat},${long}`
+                            };
+                            console.log(`${moment().format("h:mma")}`)
+                            console.log(`${obj.location}`);
+                            console.log(`${obj.link}`);
+                            socket.emit('location', obj, chatRoom, (status)=>{
+                                
+                                //$("#msg").append(`<p style="text-align: right">${moment().format("h:mma")}: ${obj.location}. <a href="${obj.link}">My current location</a></p>`);
+                            });
+                        })
+                    });
+                })
+            }else{
+                alert("Browser doesn't support geolocation");
+            }
+        });
         socket.on('shareLocation', (msg, nick)=>{
             const time = moment().format("h:mm a");
             if(nick==username){
