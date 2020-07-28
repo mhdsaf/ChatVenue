@@ -51,6 +51,9 @@ html {
         bottom: 0;
         width: 100%;
       }
+      .heig{
+        padding-bottom: 60px!important;
+      }
   }
   button:hover{
       background-color: lightgray;
